@@ -10,4 +10,4 @@ Then in the project directory run:
 
 <code>npm start</code>
 
-Open http://localhost:3000 to view it in the browser.
+Open <a href="http://localhost:8080" target="_blank">http://localhost:8080</a> to view it in the browser.
