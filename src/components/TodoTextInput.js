@@ -1,40 +1,39 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 
 const placeholder = 'Enter your task'
+const { func } = PropTypes
 
 export default class TodoTextInput extends Component {
-  constructor(props) {
-    super(props)
+  static propTypes = {
+    addTask: func.isRequired
+  }
+  state = { text: '' }
 
-    this.state = {text: ''}
-
-    this.onInputChange = this.onInputChange.bind(this)
-    this.onFormSubmit = this.onFormSubmit.bind(this)
+  onInputChange = (e) => {
+    this.setState({ text: e.target.value })
   }
 
-  onInputChange(e) {
-    this.setState({text: e.target.value})
-  }
-
-  onFormSubmit(e) {
+  onFormSubmit = (e) => {
     e.preventDefault()
 
-    let text = this.state.text.trim()
-    if (text){
+    const text = this.state.text.trim()
+    if (text) {
       this.props.addTask(text)
-      this.setState({ text: ''})
+      this.setState({ text: '' })
     }
   }
-  render(){
+  render() {
     return (
       <form onSubmit={this.onFormSubmit} className="input-group">
-        <input type='text'
-               className="form-control mb-2"
-               placeholder={placeholder}
-               autoFocus="true"
-               value={this.state.text}
-               onChange={this.onInputChange} />
-       </form>
+        <input
+          type="text"
+          className="form-control mb-2"
+          placeholder={placeholder}
+          autoFocus="true"
+          value={this.state.text}
+          onChange={this.onInputChange}
+        />
+      </form>
     )
   }
 }

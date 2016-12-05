@@ -4,21 +4,31 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js"
+    "start": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+    "lint": "eslint 'src'"
   },
   "keywords": [],
   "author": "Tatiana Kurenkova",
   "license": "ISC",
   "devDependencies": {
-    "babel": "^6.5.2",
+    "babel-cli": "^6.18.0",
     "babel-core": "^6.18.2",
+    "babel-eslint": "^7.1.1",
     "babel-loader": "^6.2.7",
     "babel-preset-latest": "^6.16.0",
     "babel-preset-react": "^6.16.0",
+    "babel-preset-stage-0": "^6.16.0",
+    "eslint": "^3.10.2",
+    "eslint-config-airbnb": "^13.0.0",
+    "eslint-plugin-babel": "^4.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.7.1",
     "webpack": "^1.13.3",
     "webpack-dev-server": "^1.16.2"
   },
   "dependencies": {
+    "classnames": "^2.2.5",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-redux": "^4.4.6",

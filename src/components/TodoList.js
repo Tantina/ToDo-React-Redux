@@ -1,17 +1,24 @@
-import React, { PropTypes, Component } from 'react'
+import React, { PropTypes } from 'react'
 import TodoItem from './TodoItem'
 
-export default class TodoList extends Component {
-  render() {
-    const { tasks, actions } = this.props
-    return (
-      <ul className="list-group mb-1">
-      {tasks.map( task =>
-        <TodoItem key={task.id}
-                  task={task}
-                  actions={actions} />
+const { array, object } = PropTypes
+
+export const TodoList = (props) => {
+  const { tasks, actions } = props
+  return (
+    <ul className="list-group mb-1">
+      {tasks.map(task =>
+        <TodoItem
+          key={task.id}
+          task={task}
+          actions={actions}
+        />
       )}
-      </ul>
-    )
-  }
+    </ul>
+  )
+}
+
+TodoList.propTypes = {
+  tasks: array.isRequired,
+  actions: object.isRequired
 }

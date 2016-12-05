@@ -1,46 +1,45 @@
-import {ADD_TODO, REMOVE_TODO, EDIT_TODO, TOGGLE_TODO, REMOVE_COMPLETED, COMPLETE_ALL} from '../constants/ActionTypes'
-import {SET_FILTER} from '../constants/TodoFilters'
+import { ADD_TODO, REMOVE_TODO, EDIT_TODO, TOGGLE_TODO, REMOVE_COMPLETED, COMPLETE_ALL } from '../constants'
 
-let nextTodoId = 0;
+let nextTodoId = 0
 
-export function addTask( text ){
+export function addTask(text) {
   return {
     type: ADD_TODO,
     id: nextTodoId++,
-    text
+    text,
   }
 }
 
-export function removeTask( id ){
+export function removeTask(id) {
   return {
     type: REMOVE_TODO,
-    id
+    id,
   }
 }
 
-export function editTask( id, text ){
+export function editTask(id, text) {
   return {
     type: EDIT_TODO,
     id,
-    text
+    text,
   }
 }
 
-export function toggleTask( id ){
+export function toggleTask(id) {
   return {
     type: TOGGLE_TODO,
-    id
+    id,
   }
 }
 
-export function removeCompleted(){
+export function removeCompleted() {
   return {
-    type: REMOVE_COMPLETED
+    type: REMOVE_COMPLETED,
   }
 }
 
-export function completeAll(){
+export function completeAll() {
   return {
-    type: COMPLETE_ALL
+    type: COMPLETE_ALL,
   }
 }

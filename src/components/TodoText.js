@@ -1,36 +1,26 @@
-import React, { PropTypes, Component } from 'react'
-import { ENTER_KEY, ESCAPE_KEY } from '../constants/KeyCodes'
+import React, { Component, PropTypes } from 'react'
+import { ENTER_KEY, ESCAPE_KEY } from '../constants'
+
+const { func, object } = PropTypes
 
 export default class TodoText extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {text: this.props.task.text}
-
-    this.setNewValue = this.setNewValue.bind(this)
-    this.onInputChange = this.onInputChange.bind(this)
-    this.onInputSubmit = this.onInputSubmit.bind(this)
+  static propTypes = {
+    actions: object.isRequired,
+    task: object.isRequired,
+    onModeSave: func.isRequired
   }
 
-  setNewValue() {
-    const text = this.state.text.trim()
-
-    if (text){
-      this.props.actions.editTask(this.props.task.id, text)
-      this.setState({ text: text})
-      this.props.onModeSave()
-    } else {
-      this.props.actions.removeTask(this.props.task.id)
-    }
+  state = {
+    text: this.props.task.text
   }
 
-  onInputChange(e) {
-    this.setState({text: e.target.value})
+  onInputChange = (e) => {
+    this.setState({ text: e.target.value })
   }
 
-  onInputSubmit(e) {
+  onInputSubmit = (e) => {
     if (e.which === ENTER_KEY) {
-        this.setNewValue()
+      this.setNewValue()
     }
 
     if (e.which === ESCAPE_KEY) {
@@ -38,15 +28,30 @@ export default class TodoText extends Component {
     }
   }
 
+  setNewValue = () => {
+    const { text } = this.state
+    const { editTask } = this.props.actions
+
+    if (text.trim()) {
+      editTask(this.props.task.id, text)
+      this.setState({ text })
+      this.props.onModeSave()
+    } else {
+      this.props.actions.removeTask(this.props.task.id)
+    }
+  }
+
   render() {
     return (
-      <input type="text"
-             className="form-control"
-             autoFocus="true"
-             value={this.state.text}
-             onBlur={this.setNewValue}
-             onChange={this.onInputChange}
-             onKeyDown={this.onInputSubmit} />
+      <input
+        type="text"
+        className="form-control"
+        autoFocus="true"
+        value={this.state.text}
+        onBlur={this.setNewValue}
+        onChange={this.onInputChange}
+        onKeyDown={this.onInputSubmit}
+      />
     )
   }
 }

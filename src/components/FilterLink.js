@@ -1,16 +1,22 @@
-import React, { Component } from 'react'
+import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
-import {SHOW_ALL} from '../constants/TodoFilters'
+import { SHOW_ALL } from '../constants'
 
-export default class FilterLink extends Component {
-  render() {
-  const {filter} = this.props
+const { string } = PropTypes
+
+export const FilterLink = (props) => {
+  const { filter } = props
   return (
-    <Link to={ filter.type === SHOW_ALL ? "" : filter.type }
-          className="btn btn-outline-primary"
-          activeClassName="active">
-          {filter.text}
+    <Link
+      to={filter.type === SHOW_ALL ? '' : filter.type}
+      className="btn btn-outline-primary"
+      activeClassName="active"
+    >
+      {filter.text}
     </Link>
-    )
-  }
+  )
+}
+
+FilterLink.propTypes = {
+  filter: string.isRequired
 }
